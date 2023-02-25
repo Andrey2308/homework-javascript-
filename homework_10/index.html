@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 class="content"></h1>
+
+    <p class="description_1"></p>
+    <p class="description_2"></p>
+    <p class="description_3"></p>
+    <p class="description_4"></p>
+    <p class="description_5"></p>
+    
+    
+
+    <script src="/homework_10/data.js"></script>
+    <script>
+      const commanderEL = JSON.parse(dataCommander);
+      console.log(commanderEL);
+
+      
+      const contentEl = document.querySelector('.content');
+      contentEl.textContent = `Это текст из json ${commanderEL.name}`;
+      contentEl.style.textAlign = 'center';
+      contentEl.style.border = '2px solid red';
+      contentEl.style.backgroundColor = 'yellow';
+
+
+      const descriptionEl = document.querySelector('.description_1');
+      descriptionEl.textContent = `${commanderEL.gender}`;
+      descriptionEl.style.color = 'blue';
+
+      const descriptionEl2 = document.querySelector('.description_2');
+      descriptionEl2.textContent = `${commanderEL.culture}`;
+      descriptionEl2.style.color = 'green';
+
+      const descriptionEl3 = document.querySelector('.description_3');
+      descriptionEl3.textContent = `${commanderEL.born}`;
+      descriptionEl3.style.color = 'red';
+
+      const descriptionEl4 = document.querySelector('.description_4');
+      descriptionEl4.textContent = `${commanderEL.died}`;
+      descriptionEl4.style.color = 'Orange';
+
+      const descriptionEl5 = document.querySelector('.description_5');
+      descriptionEl5.textContent = `${commanderEL.titles}`;
+      descriptionEl5.style.color = 'purple';
+ 
+    
+ 
+ 
+      
+      
+
+   
+
+      
+    
+    </script>
+  </body>
+</html>
