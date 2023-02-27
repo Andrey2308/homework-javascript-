@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    
+    <script src="/homework_11/data.js"></script>
+
+    <script>
+      
+      const dataFeatBlock = JSON.parse(dataBlock);
+
+      const contentDiv = document.createElement("div");
+      contentDiv.classList.add("content");
+      document.body.appendChild(contentDiv);
+
+      const titleDiv = document.createElement("div");
+      titleDiv.classList.add("title_div");
+      contentDiv.appendChild(titleDiv);
+
+      const titleName = document.createElement("h1");
+      titleName.textContent = "Fetured Items";
+      titleName.classList.add("title");
+      titleDiv.appendChild(titleName);
+
+      const subTitle = document.createElement("p");
+      subTitle.classList.add("sub_title_text");
+      subTitle.textContent =
+        "Shop for items based on what we featured in this week";
+      titleDiv.appendChild(subTitle);
+
+      const productsElems = document.createElement("div");
+      productsElems.classList.add("products");
+      contentDiv.appendChild(productsElems);
+
+      dataFeatBlock.forEach((element) => {
+        const prod = document.createElement("div");
+        prod.classList.add("product");
+        productsElems.appendChild(prod);
+
+        const prodImage = document.createElement("img");
+        prod.appendChild(prodImage);
+        prodImage.src = element.src;
+
+        const prodName = document.createElement("h3");
+        prod.appendChild(prodName);
+        prodName.textContent = element.name;
+
+        const description = document.createElement("p");
+        description.textContent = element.description;
+        prod.appendChild(description);
+
+        const prodPrice = document.createElement("p");
+        prodPrice.classList.add("price");
+        prodPrice.textContent = element.price;
+        prod.appendChild(prodPrice);
+      });
+    </script>
+  </body>
+</html>
