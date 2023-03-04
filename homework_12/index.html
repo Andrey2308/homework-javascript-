@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ролики</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="current">
+        Время:
+        <span class="currentTime">00:00</span>
+      </div>
+      <div class="player">
+        <video
+          class="video"
+          src="https://webcode.tools/media/video.mp4"
+        ></video>
+      </div>
+      <div class="buttons">
+        <img
+          src="/homework_12/img/backward.png"
+          class="backward icons"
+          width="70"
+        />
+        <img src="/homework_12/img/play.png" class="play icons" width="70" />
+        <img
+          src="/homework_12/img/forward.png"
+          class="forward icons"
+          width="70"
+        />
+        <img src="/homework_12/img/pause.png" class="pause icons" width="70" />
+        <img src="/homework_12/img/stop.png" class="stop icons" width="70" />
+        <img src="/homework_12/img/sound.png" class="sound icons" width="70" />
+        <input type="range" class="forwardLine" value="0" step="0.01" />
+      </div>
+      <div class="nextVideos"></div>
+    </div>
+
+    <script src="/homework_12/data.js"></script>
+    <script>
+      const dataVideoItems = JSON.parse(dataVideo);
+
+      const playerEl = document.querySelector(".player");
+      const nextVideosEl = document.querySelector(".nextVideos");
+
+      dataVideoItems.forEach((element) => {
+        const addVideo = document.createElement("div");
+        addVideo.classList.add("addVideo");
+        nextVideosEl.appendChild(addVideo);
+
+        const createVideo = document.createElement("video");
+        createVideo.classList.add("videoCreate");
+        addVideo.appendChild(createVideo);
+        createVideo.src = element.src;
+
+        const videoName = document.createElement("h3");
+        videoName.textContent = element.name;
+        addVideo.appendChild(videoName);
+
+        const videoDescription = document.createElement("p");
+        videoDescription.textContent = element.description;
+        addVideo.appendChild(videoDescription);
+
+        createVideo.addEventListener("mouseover", function (e) {
+          createVideo.play();
+          createVideo.style.border = "3px solid #ddd";
+        });
+        createVideo.addEventListener("mouseleave", function (e) {
+          createVideo.style.border = "3px solid #09d9f5";
+          createVideo.pause();
+        });
+      });
+
+      const videoEl = document.querySelector(".video");
+      const videoEl2 = document.querySelector(".video2");
+      const playButt = document.querySelector(".play");
+      const pauseButt = document.querySelector(".pause");
+      const stopButt = document.querySelector(".stop");
+      const forwardButt = document.querySelector(".forward");
+      const volumeButt = document.querySelector(".forwardLine");
+      const currTime = document.querySelector(".currentTime");
+      const backwardButt = document.querySelector(".backward");
+      const buttonsEls = document.querySelectorAll(".icons");
+
+
+      videoEl.addEventListener("mouseover", function (e) {
+        videoEl.style.opacity = 0.7;
+      });
+      videoEl.addEventListener("mouseleave", function (e) {
+        videoEl.style.opacity = 1;
+      });
+
+      // события с нажатием на кнопки
+      playButt.addEventListener("click", function (e) {
+        videoEl.play();
+      });
+      pauseButt.addEventListener("click", function (e) {
+        videoEl.pause();
+      });
+      stopButt.addEventListener("click", function (e) {
+        videoEl.pause();
+        videoEl.currentTime = 0;
+      });
+      volumeButt.addEventListener("input", function (value) {
+        videoEl.vokume = volumeButt.value;
+      });
+      videoEl.addEventListener("timeupdate", function (e) {
+        currTime.innerText = videoEl.currentTime;
+      });
+
+      forwardButt.addEventListener("click", function () {
+        videoEl.currentTime += 1;
+      });
+      backwardButt.addEventListener("click", function () {
+        videoEl.currentTime -= 1;
+      });
+
+      // события с кнопками (наведение мыши)
+      buttonsEls.forEach((element) => {
+        element.addEventListener("mouseover", function (e) {
+          element.style.opacity = 0.5;
+        });
+        element.addEventListener("mouseleave", function (e) {
+          element.style.opacity = 0.9;
+        });
+      });
+    </script>
+  </body>
+</html>
